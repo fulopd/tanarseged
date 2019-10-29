@@ -33,7 +33,7 @@ namespace TanarSeged
             //6. Feladat
             Console.WriteLine("6. Feladat:");
             dr.setHianyzas();
-            Console.WriteLine("Hiányzól beállítása kész. ");
+            Console.WriteLine("Hiányzók beállítása kész. ");
             //7. - 8. Feladat
             Console.WriteLine("7. - 8. Feladat:");            
             Console.WriteLine("Exportálás: "+ dr.export());

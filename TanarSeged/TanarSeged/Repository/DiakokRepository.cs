@@ -123,7 +123,7 @@ namespace TanarSeged.Repository
             using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.UTF8))
             {
                 sw.WriteLine("Tanuló;Érdemjegy;Hiányzás");
-                foreach (Diak item in Diakok)
+                foreach (Diak item in Diakok.OrderBy(x => x.Nev))
                 {
                     sw.WriteLine(item.Nev + ";" + item.Osztalyzat + ";" + (item.Hianyzas ? "IGAZ" : "HAMIS"));
                 }
