@@ -30,11 +30,17 @@ namespace TanarSeged
             Console.WriteLine("5. Feladat:");
             Console.WriteLine("Osztályzatok statisztika: ");
             dr.getJegyekStatisztika();
+            //6. Feladat
+            Console.WriteLine("6. Feladat:");
+            dr.setHianyzas();
+            Console.WriteLine("Hiányzól beállítása kész. ");
+            //7. - 8. Feladat
+            Console.WriteLine("7. - 8. Feladat:");            
+            Console.WriteLine("Exportálás: "+ dr.export());
 
 
 
-
-            dr.kiir();
+            //dr.kiir();
             Console.ReadKey();
         }
     }

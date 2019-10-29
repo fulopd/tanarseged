@@ -105,6 +105,30 @@ namespace TanarSeged.Repository
             }
         }
 
-        
+        public void setHianyzas() {
+
+            foreach (Diak item in Diakok)
+            {
+                if (item.Osztalyzat == 1)
+                {
+                    item.Hianyzas = true;
+                }
+            }
+        }
+
+        public string export() {
+
+            string date = DateTime.Now.ToString("yyyyMMdd");
+            string fileName = "kreta" + date + ".csv";
+            using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.UTF8))
+            {
+                sw.WriteLine("Tanuló;Érdemjegy;Hiányzás");
+                foreach (Diak item in Diakok)
+                {
+                    sw.WriteLine(item.Nev + ";" + item.Osztalyzat + ";" + (item.Hianyzas ? "IGAZ" : "HAMIS"));
+                }
+            }
+            return File.Exists(fileName) ? fileName : "Hiba! A File nem jött létre!";
+        }
     }
 }
