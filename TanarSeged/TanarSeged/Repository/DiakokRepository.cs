@@ -22,7 +22,7 @@ namespace TanarSeged.Repository
 
             if (File.Exists(filename))
             {
-                StreamReader sr = new StreamReader(filename);
+                StreamReader sr = new StreamReader(filename, Encoding.Default, true);
                 bool tartalmazza = false;
                 sr.ReadLine();
 
@@ -45,6 +45,7 @@ namespace TanarSeged.Repository
                         Diakok.Add(d);
                     }
                 }
+                Console.WriteLine(filename + " beolvasása megtörtént");
             }
             else
             {
@@ -54,6 +55,56 @@ namespace TanarSeged.Repository
             
         }
 
+        public void kiir()
+        {
 
+            foreach (Diak item in Diakok)
+            {
+                Console.WriteLine(item.Nev + " " + item.Osztalyzat + " " + item.Hianyzas);
+            }
+        }
+
+        public void randomJegyek() {
+
+            Random r = new Random();
+            foreach (Diak item in Diakok)
+            {
+                item.Osztalyzat = r.Next(1, 6);
+            }
+        }
+
+        public int getDiakokSzama() {
+            return Diakok.Count;
+        }
+
+        public double getOsztalyAtlag() {
+            double sum = 0;
+            foreach (Diak item in Diakok)
+            {
+                sum += item.Osztalyzat;
+            }
+
+            return sum / Diakok.Count;
+        }
+
+        public void getJegyekStatisztika() {
+
+            var JegyekLista = Diakok
+                .GroupBy(x => x.Osztalyzat)
+                .Select(x => new
+                    {
+                        Jegyek = x.Key,
+                        Darab = x.Count()
+                    }
+                )
+                .OrderBy(x => x.Jegyek);
+
+            foreach (var item in JegyekLista)
+            {
+                Console.WriteLine("\t" + item.Jegyek +": " + item.Darab);
+            }
+        }
+
+        
     }
 }
